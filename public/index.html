@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Games</title>
+		<link href="main.css" rel="stylesheet"/>
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.png"/>
+	</head>
+	
+	<body class="homepage">
+		<h1> Homemade Games </h1>
+		
+		<div class="games">
+			<button class="game" name="other">Not my games</button>
+			<button class="game" name="survive">Survive</button>
+			<button class="game" name="tanks">Tanks</button>
+			<button class="game" name="tanks-builder">Tanks World Builder</button>
+			<button class="game" name="tanks-online">Tanks Online</button>
+			<button class="game" name="snake">Snake</button>
+			<button class="game" name="tower-defense">Tower Defense</button>
+		</div>
+		
+		<script>
+			let games = document.getElementsByClassName("game")
+		
+			for (const game of games) {
+				game.onclick = function(){
+					location.href = game.name
+				}
+			}
+		</script>
+	</body>
+</html>

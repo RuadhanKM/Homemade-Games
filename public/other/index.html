@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Other Games</title>
+		<link href="../main.css" rel="stylesheet"/>
+		<link rel="shortcut icon" type="image/x-icon" href="../favicon.png"/>
+	</head>
+	
+	<body class="homepage">
+		<h1> Probably Better Games </h1>
+		
+		<div class="games">
+			<button class="game" name="../">My games</button>
+			<button class="game" name="2048">2048</button>
+		</div>
+		
+		<script>
+			let games = document.getElementsByClassName("game")
+		
+			for (const game of games) {
+				game.onclick = function(){
+					location.href = game.name
+				}
+			}
+		</script>
+	</body>
+</html>
