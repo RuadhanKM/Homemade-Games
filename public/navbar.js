@@ -5,6 +5,8 @@ class nbButton{
 		b.onclick = func
 		b.innerHTML = name
 		
+		this.button = b
+		
 		var checkExist = setInterval(function() {
 			if (document.getElementById("navbar")) {
 				document.getElementById("navbar").appendChild(b)
@@ -25,6 +27,8 @@ class nbText{
 		t.addEventListener('input', function(e) {
 			a.value = e.target.value
 		})
+		
+		this.textArea = t
 		
 		var checkExist = setInterval(function() {
 			if (document.getElementById("navbar")) {

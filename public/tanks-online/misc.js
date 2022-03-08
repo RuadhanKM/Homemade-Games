@@ -125,22 +125,30 @@ class proj {
 		
 		for (const tank of tanks) {			
 			if (tank.checkCol(this) && tank.visable && hosting) {
-				if (tank === this.tank) {
+				if (tank == this.tank) {
 					if (this.canSelfDammage) {
 						let message = {}
 						
 						message.prot = "kill"
-						message.tank = tank.pid
-						message.proj = projs.indexOf(this)
+						message.data = {}
+						message.data.tank = tank.pid
+						message.data.proj = projs.indexOf(this)
+						message.data.hosting = hosting
 						ws.send(JSON.stringify(message))
+						
+						tank.visable = false
 					}
 				} else {				
 					let message = {}
 					
 					message.prot = "kill"
-					message.tank = tank.pid
-					message.proj = projs.indexOf(this)
+					message.data = {}
+					message.data.tank = tank.pid
+					message.data.proj = projs.indexOf(this)
+					message.data.hosting = hosting
 					ws.send(JSON.stringify(message))
+					
+					tank.visable = false
 				}
 			}
 		}
@@ -279,8 +287,6 @@ class tank {
 	shoot(doSend, mes=""){
 		let cs = this
 		
-		console.log(cs.canShoot)
-		
 		if (cs.canShoot && doSend) {
 			cs.canShoot = false
 			let bullet = new proj(this.pos, this.lookDirFromAngle(), 10, this)
@@ -294,11 +300,16 @@ class tank {
 			
 			let data = {}
 			data.pos = this.pos
-			data.angle = this.lookAngle
+			data.angle = this.lookDirFromAngle()
 			data.hosting = this.pid == 1
 			
 			message.data = data
 			ws.send(JSON.stringify(message))
+			
+			return bullet
+		}
+		if (!doSend) {
+			let bullet = new proj(mes.data.pos, mes.data.angle, 10, this)
 			
 			return bullet
 		}
